@@ -43,6 +43,24 @@ public class Conexion {
         }
     }
     
+    public static ResultSet select(){
+        /*
+        Metodo para visualizar toda nuestra base de datos;
+        */
+        connect();
+        try{
+            
+            st=conectar.prepareStatement("select * from Alumnos");
+            
+            rs=st.executeQuery();
+            
+        }catch(SQLException ex){
+            System.out.println("Error-4001: No se pudo realizar la consulta de la base");
+        }
+        close();
+        return rs;
+        
+    }
     public static void insert(Alumnos alu){
         /*
         Metodo para insertar nuevos registros en la base
@@ -62,5 +80,54 @@ public class Conexion {
         }catch(SQLException ex){
             System.out.println("ERROR-4010: No se pudo insertar el nuevo registro");
         }
+        select();
+        close();
+    }
+    
+    public static void delete(Alumnos alu){
+        /*
+        Metodo para eliminar cualquier registro que coincida con la clave de nuestra base
+        */
+        connect();
+        try {
+            st=conectar.prepareStatement("delete from Alumnos where clave='"+alu.getClave()+"'");
+            st.executeUpdate();
+        }catch(SQLException ex){
+            System.out.println("ERROR:4012: No se pudo eliminar el registro");
+        }
+        select();
+        close();
+    }
+    
+    public static void update(Alumnos alu1, Alumnos alu2){
+        /*
+        Metodo para modificar un registro que ya pertenece a la base
+        */
+        try{
+        st=conectar.prepareStatement("update Alumnos set clave='"+alu2.getClave()+"'"
+        +", nombre='"+alu2.getNombre()+"'"
+        +", nota='"+alu2.getNota()+"'"
+        +"where clave='"+alu1.getClave()+"';");
+        st.executeUpdate();
+    }catch(SQLException ex){
+            System.out.println("ERROR-4020:No se pudo modificar el registro actual");
+    }
+        select();
+        close();
+}
+    
+    public static ResultSet selectWhere(String buscar){
+        /*
+        Metodo de busqueda en la base de datos atraves de su clave primaria
+        */
+        connect();
+        try{
+            st=conectar.prepareStatement("select * from Alumnos where clave='"+buscar+"'");
+            rs=st.executeQuery();
+        }catch(SQLException ex){
+            System.out.println("ERROR-4032: No se pudo buscar con precision, fallo del codigo o de la busqueda");
+        }
+        close();
+        return rs;
     }
 }

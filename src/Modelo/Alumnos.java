@@ -35,10 +35,11 @@ public class Alumnos {
     public void setNota(int nota) {
         this.nota = nota;
     }
-    
+   
     public void save(){
-        Conexion conex=new Conexion();
-        
+        /*
+        Falta terminar metodo.
+        */
     }
 
     @Override
