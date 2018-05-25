@@ -51,7 +51,6 @@ public class Conexion {
         try{
             
             st=conectar.prepareStatement("select * from Alumnos");
-            
             rs=st.executeQuery();
             
         }catch(SQLException ex){

@@ -22,7 +22,7 @@ public class Metodos {
             alus.clear();
             
             while(rs.next()){
-                alus.add(new Alumnos(rs.getInt("clave"),rs.getString("nombre"),rs.getInt("nota")));
+                alus.add(new Alumnos(rs.getInt("clave"), rs.getString("nombre"), rs.getInt("nota")));
             }
                 rs.close();
                 
