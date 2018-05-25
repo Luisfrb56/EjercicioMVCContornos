@@ -19,7 +19,7 @@ public class Conexion {
         */
         try{
             
-            conectar=DriverManager.getConnection("jdbc:sqlite:‪C:\\Users\\adm\\Documents\\NetBeansProjects\\3Eval\\EjercicioMVC\\BaseMVN.db");
+            conectar=DriverManager.getConnection("jdbc:sqlite:‪BaseMVN.db");
             
             if(conectar!=null){
                 System.out.println("Estas conectado, no olvides desconectar al terminar");
